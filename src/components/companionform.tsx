@@ -1,5 +1,4 @@
-"use client";
-import { subjects } from "../../constants";
+"use client"
 
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
@@ -22,9 +21,11 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
-import { Textarea } from "@/components/ui/textarea";
-import { createCompanion } from "@/lib/actions/companion.action";
-import { redirect } from "next/navigation";
+import { subjects } from "../../constants"
+import {Textarea} from "@/components/ui/textarea";
+import { createCompanion } from "@/lib/actions/companion.action"
+import {redirect} from "next/navigation";
+
 const formSchema = z.object({
     name: z.string().min(1, { message: 'Companion is required.'}),
     subject: z.string().min(1, { message: 'Subject is required.'}),
@@ -50,7 +51,7 @@ const CompanionForm = () => {
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         const companion = await createCompanion(values);
 
-        if (companion) {
+        if(companion) {
             redirect(`/companions/${companion.id}`);
         } else {
             console.log('Failed to create a companion');
@@ -94,7 +95,7 @@ const CompanionForm = () => {
                                         <SelectValue placeholder="Select the subject" />
                                     </SelectTrigger>
                                     <SelectContent>
-                                        {subjects.map((subject: string) => (
+                                        {subjects.map((subject) => (
                                             <SelectItem
                                                 value={subject}
                                                 key={subject}
@@ -141,7 +142,9 @@ const CompanionForm = () => {
                                     defaultValue={field.value}
                                 >
                                     <SelectTrigger className="input">
-                                        <SelectValue placeholder="Select male or female" />
+                                        <SelectValue
+                                            placeholder="Select the voice"
+                                        />
                                     </SelectTrigger>
                                     <SelectContent>
                                         <SelectItem value="male">
@@ -196,20 +199,12 @@ const CompanionForm = () => {
                         <FormItem>
                             <FormLabel>Estimated session duration in minutes</FormLabel>
                             <FormControl>
-                                <select
+                                <Input
+                                    type="number"
+                                    placeholder="15"
                                     {...field}
-                                    className="input w-full border rounded px-3 py-2"
-                                >
-                                    {[...Array(8)].map((_, i) => {
-                                        const value = (i + 1) * 15;
-                                        return (
-                                            <option key={value} value={value}>
-                                                {value} min
-                                            </option>
-                                        );
-                                    })}
-                                    <option value={120}>120 min (2 hours)</option>
-                                </select>
+                                    className="input"
+                                />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -221,4 +216,4 @@ const CompanionForm = () => {
     )
 }
 
-export default CompanionForm;
+export default CompanionForm

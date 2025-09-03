@@ -1,17 +1,18 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { subjectsColors } from '../../constants';
 interface CompanionCardProps {
     id: string,
     name: string,
     topic: string,
     subject: string,
     duration: number,
-    color: string,
 }
 
-const CompanionCard = ({id, name , topic, subject, duration, color}: CompanionCardProps) => {
+const CompanionCard = ({id, name , topic, subject, duration}: CompanionCardProps) => {
+    const bgColor = subjectsColors[subject as keyof typeof subjectsColors] || '#fff';
     return(
-        <article className = "companion-card" style ={{ backgroundColor: color}}>
+        <article className = "companion-card" style ={{ backgroundColor: bgColor }}>
             <div className = "flex justify-between items-center">
                 <div className = "subject-badge">{subject}</div>
                 <button className = "companion-bookmark">

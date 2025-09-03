@@ -36,9 +36,12 @@ export const getAllCompanions = async ({ limit = 10, page = 1, subject, topic }:
 
     const { data: companions, error } = await query;
 
-    if(error) throw new Error(error.message);
+    if (error) {
+        // Instead of throwing, return an empty array so the page shows blank state
+        return [];
+    }
 
-    return companions;
+    return companions || [];
 }
 
 export const getCompanion = async (id: string) => {

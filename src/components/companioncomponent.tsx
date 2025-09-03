@@ -150,18 +150,20 @@ const CompanionComponent = ({ companionId, subject, topic, name, userName, userI
             <section className="transcript">
                 <div className="transcript-message no-scrollbar">
                     {messages.map((message, index) => {
+                        // Use a unique key: index + content + role
+                        const uniqueKey = `${index}-${message.role}-${message.content?.slice(0, 10)}`;
                         if(message.role === 'assistant') {
                             return (
-                                <p key={index} className="max-sm:text-sm">
+                                <p key={uniqueKey} className="max-sm:text-sm">
                                     {
                                         name
                                             .split(' ')[0]
-                                            .replace('/[.,]/g, ','')
+                                            .replace(/[.,]/g, "")
                                     }: {message.content}
                                 </p>
                             )
                         } else {
-                           return <p key={index} className="text-primary max-sm:text-sm">
+                           return <p key={uniqueKey} className="text-primary max-sm:text-sm">
                                 {userName}: {message.content}
                             </p>
                         }

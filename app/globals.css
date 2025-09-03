@@ -205,14 +205,15 @@ body {
   }
 
   .transcript {
-    @apply relative flex flex-col gap-4 w-full items-center pt-10 flex-grow overflow-hidden;
+    @apply relative flex flex-col gap-2 w-full items-center pt-4 flex-grow;
+    /* Removed overflow-hidden for scroll */
   }
   .transcript-message {
-    @apply overflow-y-auto w-full flex flex-col gap-4 max-sm:gap-2 pr-2 text-2xl;
-    max-height: 40vh;
-    min-height: 20vh;
+    @apply overflow-y-auto w-full flex flex-col gap-2 max-sm:gap-1 pr-1 text-base;
+    max-height: 30vh;
+    min-height: 10vh;
     background: transparent;
-    /* Always visible, scrollable on desktop */
+    /* Smaller font and component size, scrollable */
   }
   .transcript-fade {
     @apply pointer-events-none absolute bottom-0 left-0 right-0 h-40 max-sm:h-20 bg-gradient-to-t from-background via-background/90 to-transparent z-10;

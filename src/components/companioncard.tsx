@@ -15,10 +15,6 @@ const CompanionCard = ({id, name , topic, subject, duration}: CompanionCardProps
         <article className = "companion-card" style ={{ backgroundColor: bgColor }}>
             <div className = "flex justify-between items-center">
                 <div className = "subject-badge">{subject}</div>
-                <button className = "companion-bookmark">
-                    <Image src = "/icons/bookmark.svg" alt = "bookmark" 
-                    width = {12.5} height = {15} />
-                </button>
             </div>
             <h2 className = "text 2xl font-bold">{name}</h2>
             <p className = "text-sm">{topic}</p>
@@ -27,10 +23,10 @@ const CompanionCard = ({id, name , topic, subject, duration}: CompanionCardProps
                 <p className = "text-sm">{duration} mins</p>
             </div>
 
-            <Link href = {'/companions/${id}'} className = "w-50%">
-            <button className = "btn-primary w-full justify-center">
-                Launch Lesson
-            </button>
+            <Link href={`/companions/${id}`} className="w-50%">
+                <button className="btn-primary w-full justify-center">
+                    Launch Lesson
+                </button>
             </Link>
         </article>
     )

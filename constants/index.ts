@@ -52,7 +52,7 @@ export const recentSessions = [
     name: "Codey the Logic Hacker",
     topic: "Intro to If-Else Statements",
     duration: 45,
-    color: "#FFC8E4",
+    color: "#Fb9cc64",
   },
   {
     id: "5",
@@ -69,5 +69,32 @@ export const recentSessions = [
     topic: "The Basics of Supply & Demand",
     duration: 10,
     color: "#C8FFDF",
+  },
+];
+
+export const defaultCompanions = [
+  {
+    id: "default-1",
+    name: "Countsy the Number Wizard",
+    subject: "maths",
+    topic: "Algebra Basics",
+    duration: 30,
+    color: "#FFDA6E",
+  },
+  {
+    id: "default-2",
+    name: "Verba the Vocabulary Builder",
+    subject: "language",
+    topic: "English Grammar Essentials",
+    duration: 25,
+    color: "#BDE7FF",
+  },
+  {
+    id: "default-3",
+    name: "Neura the Brainy Explorer",
+    subject: "science",
+    topic: "Introduction to Biology",
+    duration: 40,
+    color: "#E5D0FF",
   },
 ];

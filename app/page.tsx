@@ -4,6 +4,7 @@ import CTA from "@/components/CTA";
 import { getAllCompanions, getRecentSessions } from "@/lib/actions/companion.action";
 import { recentSessions, defaultCompanions , } from "../constants"; // <-- Add defaultCompanions to your constants
 import { currentUser } from "@clerk/nextjs/server";
+import { subjectsColors } from "../constants";
 
 const Page = async () => {
   const user = await currentUser();

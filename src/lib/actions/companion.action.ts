@@ -18,30 +18,21 @@ export const createCompanion = async (formData: CreateCompanion) => {
     return data[0];
 }
 
-export const getAllCompanions = async ({ limit = 10, page = 1, subject, topic }: GetAllCompanions) => {
+export const getAllCompanions = async ({ userId, limit }: { userId: string, limit: number }) => {
     const supabase = createSupabaseClient();
 
-    let query = supabase.from('companions').select();
-
-    if(subject && topic) {
-        query = query.ilike('subject', `%${subject}%`)
-            .or(`topic.ilike.%${topic}%,name.ilike.%${topic}%`)
-    } else if(subject) {
-        query = query.ilike('subject', `%${subject}%`)
-    } else if(topic) {
-        query = query.or(`topic.ilike.%${topic}%,name.ilike.%${topic}%`)
-    }
-
-    query = query.range((page - 1) * limit, page * limit - 1);
-
-    const { data: companions, error } = await query;
+    const { data, error } = await supabase
+        .from('companions')
+        .select()
+        .eq('user_id', userId)
+        .limit(limit)
 
     if (error) {
         // Instead of throwing, return an empty array so the page shows blank state
         return [];
     }
 
-    return companions || [];
+    return data || [];
 }
 
 export const getCompanion = async (id: string) => {

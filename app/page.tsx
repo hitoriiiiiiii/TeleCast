@@ -1,7 +1,7 @@
 import CompanionCard from "@/components/companioncard";
 import CompanionsList from "@/components/companionslist";
 import CTA from "@/components/CTA";
-import { getAllCompanions, getRecentSessions } from "@/lib/actions/companion.action";
+import { getAllCompanions, getUserSessions } from "@/lib/actions/companion.action";
 import { recentSessions, defaultCompanions , } from "../constants"; // <-- Add defaultCompanions to your constants
 import { currentUser } from "@clerk/nextjs/server";
 import { subjectsColors } from "../constants";
@@ -11,11 +11,11 @@ const Page = async () => {
 
   // Use default companions if user is not signed in
   const companions = user
-    ? await getAllCompanions({ limit: 3 })
+    ? await getAllCompanions({ userId: user.id, limit: 3 })
     : defaultCompanions;
 
   // Use real-time sessions only if user is signed in and has sessions, otherwise fallback to default
-  const recentSessionsCompanions = user ? await getRecentSessions(user.id, 10) : [];
+  const recentSessionsCompanions = user ? await getUserSessions(user.id, 10) : [];
   const sessionsToShow =
     user && recentSessionsCompanions && recentSessionsCompanions.length > 0
       ? recentSessionsCompanions

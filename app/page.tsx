@@ -14,12 +14,9 @@ const Page = async () => {
     ? await getAllCompanions({ userId: user.id, limit: 3 })
     : defaultCompanions;
 
-  // Use real-time sessions only if user is signed in and has sessions, otherwise fallback to default
+  // For sessions: show user-scoped sessions if signed in; otherwise show sample
   const recentSessionsCompanions = user ? await getUserSessions(user.id, 10) : [];
-  const sessionsToShow =
-    user && recentSessionsCompanions && recentSessionsCompanions.length > 0
-      ? recentSessionsCompanions
-      : recentSessions;
+  const sessionsToShow = user ? recentSessionsCompanions : recentSessions;
 
   return (
     <main>

@@ -17,13 +17,7 @@ const Page = async () => {
 
   // For sessions: show user-scoped sessions if signed in; otherwise show sample
   const recentSessionsCompanions = user ? await getUserSessions(user.id, 10) : [];
-  const sessionsToShow = user ? (recentSessionsCompanions as any[]).flat() : recentSessions.map(session => ({
-    id: session.id,
-    name: session.name,
-    topic: session.topic,
-    subject: session.subject,
-    duration: session.duration
-  }));
+  const sessionsToShow = user ? recentSessionsCompanions.flat() : recentSessions;
 
   return (
     <main>
@@ -33,8 +27,11 @@ const Page = async () => {
         {companions.map((companion) => (
           <CompanionCard
             key={companion.id}
-            {...companion}
-            color={subjectsColors[companion.subject]}
+            id={companion.id}
+            name={companion.name}
+            topic={companion.topic}
+            subject={companion.subject}
+            duration={companion.duration}
           />
         ))}
       </section>

@@ -24,7 +24,7 @@ export const getAllCompanions = async ({ userId, limit }: { userId: string, limi
     const { data, error } = await supabase
         .from('companions')
         .select()
-        .eq('user_id', userId)
+        .eq('author', userId)
         .limit(limit)
 
     if (error) {

@@ -1,6 +1,7 @@
 import CompanionCard from "@/components/companioncard";
 import CompanionsList from "@/components/companionslist";
 import CTA from "@/components/CTA";
+import Footer from "@/components/footer";
 import { getAllCompanions, getUserSessions } from "@/lib/actions/companion.action";
 import { recentSessions, defaultCompanions , } from "../constants"; // <-- Add defaultCompanions to your constants
 import { currentUser } from "@clerk/nextjs/server";
@@ -16,7 +17,13 @@ const Page = async () => {
 
   // For sessions: show user-scoped sessions if signed in; otherwise show sample
   const recentSessionsCompanions = user ? await getUserSessions(user.id, 10) : [];
-  const sessionsToShow = user ? recentSessionsCompanions : recentSessions;
+  const sessionsToShow = user ? (recentSessionsCompanions as any[]).flat() : recentSessions.map(session => ({
+    id: session.id,
+    name: session.name,
+    topic: session.topic,
+    subject: session.subject,
+    duration: session.duration
+  }));
 
   return (
     <main>
@@ -40,6 +47,7 @@ const Page = async () => {
         />
         <CTA />
       </section>
+      <Footer/>
     </main>
   );
 };

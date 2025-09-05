@@ -7,7 +7,8 @@ const Navbar = () => {
     return (
         <nav className="navbar">
             <Link href="/">
-                <div className="flex items-center gap-2.5 cursor-pointer">
+                <div className="flex items-center gap-2.5 cursor-pointer  hover:decoration-[#ffd700] hover:underline transition-all duration-200 ease-out
+             hover:shadow-[0_6px_18px_rgba(255,215,0,0.18)]">
                     <Image
                         src="/images/logo.svg"
                         alt="logo"

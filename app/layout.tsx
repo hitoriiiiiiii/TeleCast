@@ -11,7 +11,7 @@ const bricolage = Bricolage_Grotesque({
 });
 
 export const metadata: Metadata = {
-  title: "Converso",
+  title: "TeleCast",
   description: "Real-time AI Teaching Platform Build Companions and Have Fun",
 };
 

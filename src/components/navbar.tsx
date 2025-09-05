@@ -12,8 +12,8 @@ const Navbar = () => {
                     <Image
                         src="/images/logo.svg"
                         alt="logo"
-                        width={46}
-                        height={44}
+                        width={69}
+                        height={60}
                         
                     />
                 </div>

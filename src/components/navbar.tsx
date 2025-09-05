@@ -14,6 +14,7 @@ const Navbar = () => {
                         alt="logo"
                         width={46}
                         height={44}
+                        
                     />
                 </div>
             </Link>

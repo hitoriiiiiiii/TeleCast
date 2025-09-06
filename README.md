@@ -6,7 +6,7 @@ TeleCast is an AI-powered learning companion designed to help users enhance thei
 
 ## 🖼️ Preview
 
-![TeleCast Preview](preview.png)
+![TeleCast Preview](public/preview.png)
 
 ---
 
